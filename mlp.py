@@ -17,9 +17,10 @@ def get_input_tensors() -> tuple:
     return x_tensor, y_tensor
 
 def implement_xor() -> nn.Module:
+    set_seed(42)
     X, Y = get_input_tensors()
     input_dim = 2
-    hidden_dim = 4
+    hidden_dim = 8
     output_dim = 1
     model = nn.Sequential(
         nn.Linear(input_dim, hidden_dim),
@@ -29,7 +30,7 @@ def implement_xor() -> nn.Module:
     )
     criterion = nn.BCELoss()
     optimizer = optim.Adam(model.parameters(), lr=0.1)
-    epochs = 2000
+    epochs = 3000
     for _ in range(epochs):
         optimizer.zero_grad()
         predictions = model(X)
@@ -37,4 +38,3 @@ def implement_xor() -> nn.Module:
         loss.backward()
         optimizer.step()
     return model
-
