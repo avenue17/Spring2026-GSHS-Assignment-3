@@ -37,3 +37,4 @@ def implement_xor() -> nn.Module:
         loss.backward()
         optimizer.step()
     return model
+
